@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset = "utf-8">	
+	</head>
+	<body>
+		<script>
+			function getComputerChoice() {
+				let choice = 0;
+				let generate = Math.random();	
+				if (generate <= 0.32) {
+					choice = "Rock";
+				}
+				else if (generate <= 0.64) {
+					choice = "Paper";
+				}
+				else {
+					choice = "Scissors";
+				}
+				return choice;
+			}
+
+			function getHumanChoice() {
+				let choice = prompt("Rock, Paper, or Scissors?");
+				return choice;
+			}
+			
+
+			function playGame() {
+				let humanScore = 0; let computerScore = 0;
+				
+				function playRound(humanChoice, computerChoice){
+					
+					if (computerChoice == "Rock") {
+						if (humanChoice.toLowerCase() == "scissors") {
+							console.log("You lost! Rock beats Scissors!");
+							computerScore++;
+						}
+						else if (humanChoice.toLowerCase() == "rock") {
+							console.log("Tied Round!");
+						}
+						else if (humanChoice.toLowerCase() == "paper") {
+							console.log("You won! Paper beats Rock!");
+							humanScore++;
+						}
+						else {
+							console.log("Invalid answer! You lose by default!");
+							computerScore++;
+						}
+					}
+				
+					else if (computerChoice == "Paper") {
+						if (humanChoice.toLowerCase() == "scissors") {
+							console.log("You won! Scissors beats Paper!");
+							humanScore++;
+						}
+						else if (humanChoice.toLowerCase() == "rock") {
+							console.log("You lost! Paper beats Rock!");
+							computerScore++;
+						}
+						else if (humanChoice.toLowerCase() == "paper") {
+							console.log("Tied Round!");
+						}
+						else {
+							console.log("Invalid answer! You lose by default!");
+							computerScore++;
+						}
+					}
+					
+
+					else if (computerChoice == "Scissors") {
+						if (humanChoice.toLowerCase() == "scissors") {
+							console.log("Tied Round!");
+						}
+						else if (humanChoice.toLowerCase() == "rock") {
+							console.log("You Won! Rock beats Scissors!");
+							humanScore++;
+						}
+						else if (humanChoice.toLowerCase() == "paper") {
+							console.log("You lost! Scissors beats Paper!");
+							computerScore++;
+						}
+						else {
+							console.log("Invalid answer! You lose by default!");
+							computerScore++;
+						}
+					}
+				}
+						
+				for (let i=0; i<5; i++){
+					const humanSelect = getHumanChoice();
+					const computerSelect = getComputerChoice();
+					playRound(humanSelect, computerSelect);
+				}
+				
+				if (humanScore > computerScore) {
+					console.log("Congratulations, you have come out victorious!");
+				}
+				else if (humanScore == computerScore) {
+					console.log("Tie Game!");
+				}
+				else {
+					console.log("Unfortunately, you just got beat!");
+				}
+			}
+
+			playGame();
+				
+		</script>
+	</body>
+</html>
+
